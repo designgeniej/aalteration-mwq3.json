@@ -1,0 +1,260 @@
+{
+  "input": {
+    "workflow": {
+      "1": {
+        "inputs": {
+          "seed": 173892504456034,
+          "steps": 30,
+          "cfg": 1,
+          "sampler_name": "euler",
+          "scheduler": "beta",
+          "denoise": 0.8,
+          "model": [
+            "11",
+            0
+          ],
+          "positive": [
+            "10",
+            0
+          ],
+          "negative": [
+            "10",
+            1
+          ],
+          "latent_image": [
+            "10",
+            2
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "2": {
+        "inputs": {
+          "samples": [
+            "1",
+            0
+          ],
+          "vae": [
+            "8",
+            0
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "3": {
+        "inputs": {
+          "filename_prefix": "Design Genie",
+          "images": [
+            "24",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "SaveImage"
+        }
+      },
+      "4": {
+        "inputs": {
+          "image": "1757235545640_1757162608424 (1).png"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "Load Image For Inpaint"
+        }
+      },
+      "8": {
+        "inputs": {
+          "filename": "ae.safetensors"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+          "title": "VAELoader"
+        }
+      },
+      "9": {
+        "inputs": {
+          "filename": "clip_l.safetensors"
+        },
+        "class_type": "DualCLIPLoader",
+        "_meta": {
+          "title": "DualCLIPLoader"
+        }
+      },
+      "10": {
+        "inputs": {
+          "value": true,
+          "positive": [
+            "72",
+            0
+          ],
+          "negative": [
+            "27",
+            0
+          ],
+          "vae": [
+            "8",
+            0
+          ],
+          "pixels": [
+            "23",
+            1
+          ],
+          "mask": [
+            "23",
+            2
+          ]
+        },
+        "class_type": "InpaintModelConditioning",
+        "_meta": {
+          "title": "InpaintModelConditioning"
+        }
+      },
+      "11": {
+        "inputs": {
+          "model": [
+            "41",
+            0
+          ]
+        },
+        "class_type": "DifferentialDiffusion",
+        "_meta": {
+          "title": "DifferentialDiffusion"
+        }
+      },
+      "23": {
+        "inputs": {
+          "text": "bilinear",
+          "image": [
+            "4",
+            0
+          ],
+          "mask": [
+            "66",
+            0
+          ]
+        },
+        "class_type": "InpaintCropImproved",
+        "_meta": {
+          "title": "InpaintCropImproved"
+        }
+      },
+      "24": {
+        "inputs": {
+          "stitcher": [
+            "23",
+            0
+          ],
+          "inpainted_image": [
+            "2",
+            0
+          ]
+        },
+        "class_type": "InpaintStitchImproved",
+        "_meta": {
+          "title": "InpaintStitchImproved"
+        }
+      },
+      "27": {
+        "inputs": {
+          "conditioning": [
+            "72",
+            0
+          ]
+        },
+        "class_type": "ConditioningZeroOut",
+        "_meta": {
+          "title": "ConditioningZeroOut"
+        }
+      },
+      "30": {
+        "inputs": {
+          "text": "enable",
+          "model": [
+            "11",
+            0
+          ],
+          "positive": [
+            "72",
+            0
+          ],
+          "negative": [
+            "27",
+            0
+          ],
+          "latent_image": [
+            "1",
+            0
+          ]
+        },
+        "class_type": "KSamplerAdvanced",
+        "_meta": {
+          "title": "KSamplerAdvanced"
+        }
+      },
+      "41": {
+        "inputs": {
+          "filename": "flux1-dev.safetensors"
+        },
+        "class_type": "EnhancedLoadDiffusionModel",
+        "_meta": {
+          "title": "EnhancedLoadDiffusionModel"
+        }
+      },
+      "65": {
+        "inputs": {
+          "image": "1757235551241_1757162609414.png"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "Load Image Turns into Mask"
+        }
+      },
+      "66": {
+        "inputs": {
+          "value": 0,
+          "image": [
+            "65",
+            0
+          ]
+        },
+        "class_type": "ImageColorToMask",
+        "_meta": {
+          "title": "ImageColorToMask"
+        }
+      },
+      "71": {
+        "inputs": {
+          "text": "black shirt",
+          "clip": [
+            "9",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "72": {
+        "inputs": {
+          "value": 30,
+          "conditioning": [
+            "71",
+            0
+          ]
+        },
+        "class_type": "FluxGuidance",
+        "_meta": {
+          "title": "FluxGuidance"
+        }
+      }
+    }
+  }
+}
